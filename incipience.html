@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Incipience</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .side-button.left {
+      position: fixed;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .side-button.right {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+  </style>
+  <script>
+    let currentScene = 1;
+
+    function goToScene(n) {
+      document.querySelectorAll('.scene').forEach(s => s.style.display = 'none');
+      const newScene = document.getElementById(`scene-${n}`);
+      newScene.style.display = 'block';
+      document.getElementById('scene-animation').className = `scene-animation scene-${n}`;
+      const background = document.getElementById('animated-background');
+      const gifs = ['assets/incipience/test1.gif', 'assets/incipience/test2.gif'];
+      background.style.backgroundImage = `url('${gifs[n - 1]}')`;
+      currentScene = n;
+
+      const leftButton = document.querySelector('.side-button.left');
+      leftButton.style.display = currentScene === 1 ? 'none' : 'block';
+
+      const narrationElement = newScene.querySelector('.narration');
+      if (narrationElement) {
+        const text = narrationElement.textContent;
+        narrationElement.textContent = "";
+        let i = 0;
+        function typeWriter() {
+          if (i < text.length) {
+            narrationElement.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 40);
+          }
+        }
+        typeWriter();
+      }
+    }
+
+    function prevScene() {
+      if (currentScene > 1) {
+        goToScene(currentScene - 1);
+      }
+    }
+
+    function nextScene() {
+      if (currentScene < 2) {
+        goToScene(currentScene + 1);
+      }
+    }
+  </script>
+</head>
+<body>
+    <div id="animated-background"></div>
+    <nav class="nav a">
+        <a href="index.html">← home</a>
+    </nav>
+
+    <div id="scene-animation" class="scene-animation">
+      <div class="scene" id="scene-1">
+        <p class="narration" id="narration">You wake up alone in a dim room.</p>
+      </div>
+      
+      <div class="scene" id="scene-2" style="display:none">
+        <p class="narration">The shadows on the wall are moving.</p>
+      </div>
+    </div>
+
+    <div id="scene-controls">
+      <button class="side-button left" onclick="prevScene()">←</button>
+      <button class="side-button right" onclick="nextScene()">→</button>
+    </div>
+    
+    <script>
+      goToScene(currentScene);
+    </script>
+</body>
+</html>
