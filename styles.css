@@ -188,7 +188,7 @@ h1 {
     background-position: center;
     background-repeat: no-repeat;
     animation: subtleFloat 30s linear infinite;
-    pointer-events: none; /* prevents it from blocking interaction */
+    pointer-events: none; 
 }
   
 @keyframes subtleFloat {

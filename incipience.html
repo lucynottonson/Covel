@@ -30,7 +30,7 @@
       newScene.style.display = 'block';
       document.getElementById('scene-animation').className = `scene-animation scene-${n}`;
       const background = document.getElementById('animated-background');
-      const gifs = ['assets/incipience/test1.gif', 'assets/incipience/test2.gif'];
+      const gifs = ['assets/incipience/1.gif', 'assets/incipience/2.gif'];
       background.style.backgroundImage = `url('${gifs[n - 1]}')`;
       currentScene = n;
 
@@ -74,11 +74,11 @@
 
     <div id="scene-animation" class="scene-animation">
       <div class="scene" id="scene-1">
-        <p class="narration" id="narration">You wake up alone in a dim room.</p>
+        <p class="narration" id="narration">Roughly six millenia ago, a large celestial rock collided with our moon...</p>
       </div>
       
       <div class="scene" id="scene-2" style="display:none">
-        <p class="narration">The shadows on the wall are moving.</p>
+        <p class="narration">Upon impact, the rock shattered, its fragments scattering in all directions. Most drifted into the outer cosmos, but one entered Earth's gravitational pull and began descending towards the planet.</p>
       </div>
     </div>
 
